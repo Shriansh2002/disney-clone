@@ -58,9 +58,11 @@ const Header = (props) => {
 
   return (
     <Nav>
-      <Logo>
-        <img src="/images/logo.svg" alt="Disney+" />
-      </Logo>
+      <a href="/">
+        <Logo>
+          <img src="/images/logo.svg" alt="Disney+" />
+        </Logo>
+      </a>
 
       {!userName ? (
         <Login onClick={handleAuth}>Login</Login>
