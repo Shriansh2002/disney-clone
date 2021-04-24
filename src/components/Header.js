@@ -58,7 +58,7 @@ const Header = (props) => {
 
   return (
     <Nav>
-      <a href="/">
+      <a href="/home">
         <Logo>
           <img src="/images/logo.svg" alt="Disney+" />
         </Logo>

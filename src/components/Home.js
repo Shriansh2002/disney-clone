@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import db from "../firebase";
 import { setMovies } from "../features/movie/movieSlice";
 import { selectUserName } from "../features/user/userSlice";
+import Login from './Login';
+
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -58,14 +60,18 @@ const Home = (props) => {
   }, [userName]);
 
   return (
-    <Container>
-      <ImgSlider />
-      <Viewers />
-      <Recommends />
-      <NewDisney />
-      <Originals />
-      <Trending />
-    </Container>
+    !userName ? (
+      <Login />
+    ) : (
+      <Container>
+        <ImgSlider />
+        <Viewers />
+        <Recommends />
+        <NewDisney />
+        <Originals />
+        <Trending />
+      </Container >
+    )
   );
 };
 
@@ -87,5 +93,6 @@ const Container = styled.main`
     z-index: -1;
   }
 `;
+
 
 export default Home;
