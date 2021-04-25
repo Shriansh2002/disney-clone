@@ -1,23 +1,29 @@
 /* eslint-disable default-case */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+
 import ImgSlider from "./imgSlider";
 import NewDisney from "./NewDisney";
 import Originals from "./Originals";
 import Recommends from "./Recommends";
 import Trending from "./Trending";
 import Viewers from "./Viewers";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import db from "../firebase";
+
 import { setMovies } from "../features/movie/movieSlice";
 import { selectUserName } from "../features/user/userSlice";
-import Login from './Login';
 
+import db from "../firebase";
+import { auth } from "../firebase";
 
 const Home = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const userName = useSelector(selectUserName);
   let recommends = [];
   let newDisneys = [];
@@ -25,10 +31,15 @@ const Home = (props) => {
   let trending = [];
 
   useEffect(() => {
-    console.log("hello");
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        history.push("/");
+        console.log('PUSHED TO /');
+
+      }
+    });
     db.collection("movies").onSnapshot((snapshot) => {
       snapshot.docs.map((doc) => {
-        console.log(recommends);
         switch (doc.data().type) {
           case "recommend":
             recommends = [...recommends, { id: doc.id, ...doc.data() }];
@@ -59,19 +70,16 @@ const Home = (props) => {
     });
   }, [userName]);
 
+
   return (
-    !userName ? (
-      <Login />
-    ) : (
-      <Container>
-        <ImgSlider />
-        <Viewers />
-        <Recommends />
-        <NewDisney />
-        <Originals />
-        <Trending />
-      </Container >
-    )
+    <Container>
+      <ImgSlider />
+      <Viewers />
+      <Recommends />
+      <NewDisney />
+      <Originals />
+      <Trending />
+    </Container >
   );
 };
 
