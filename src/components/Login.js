@@ -1,11 +1,39 @@
+import React from 'react';
 import styled from 'styled-components';
+import { Modal, Button } from 'react-bootstrap';
 
+function MyVerticallyCenteredModal(props) {
+    return (
+        <Modal
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    This Page Says
+                </Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+                <h4 style={{ textAlign: 'center' }}>Login To Continue</h4>
+            </Modal.Body>
+
+            <Modal.Footer>
+                <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+        </Modal>
+    );
+}
 const Login = (props) => {
+    const [modalShow, setModalShow] = React.useState(false);
+
     return (<Container>
         <Content>
             <CTA>
                 <CTALogoOne src="/images/cta-logo-one.svg" alt="" />
-                <SignUp>GET ALL THERE</SignUp>
+                <SignUp onClick={() => setModalShow(true)}>GET ALL THERE</SignUp>
                 <Description>
                     💎💎 Made With ❤️ by Shriansh Agarwal 💎💎
                 </Description>
@@ -13,7 +41,11 @@ const Login = (props) => {
             </CTA>
             <BgImage />
         </Content>
-    </Container>);
+        <MyVerticallyCenteredModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+        />
+    </Container >);
 };
 
 

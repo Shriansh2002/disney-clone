@@ -5,6 +5,8 @@ import './App.css';
 import Home from "./components/Home";
 import Detail from './components/Detail';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <div className="App">
