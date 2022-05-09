@@ -1,13 +1,12 @@
 import firebase from 'firebase';
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID
-
+    apiKey: "AIzaSyDGVIz-zRh4lXi74h1cg8fvxVxR2PjafB4",
+    authDomain: "disneyplus-clone-ea7c0.firebaseapp.com",
+    projectId: "disneyplus-clone-ea7c0",
+    storageBucket: "disneyplus-clone-ea7c0.appspot.com",
+    messagingSenderId: "641527069553",
+    appId: "1:641527069553:web:848756fcf25b683c5654d0"
 };
 
 // Initialize Firebase
